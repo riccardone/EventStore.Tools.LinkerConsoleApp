@@ -14,7 +14,7 @@ namespace LinkerConsoleApp
     class Program
     {
         private static readonly Logger Log = LogManager.GetCurrentClassLogger();
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             Log.Info("Building services...");
             var config = BuildConfig();
@@ -35,7 +35,7 @@ namespace LinkerConsoleApp
                     link.Destination.ConnectionName), filterService, Settings.Default(), new NLogger());
                 services.Add(service);
             }
-            StartServices(services);
+            await StartServices(services);
             Log.Info("Press enter to exit the program");
             Console.ReadLine();
         }
