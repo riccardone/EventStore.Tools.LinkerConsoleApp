@@ -16,7 +16,7 @@ Configure the same Origin in separate Links replicating data to different destin
 ## Fan-In
 You can have separate Links with different Origins linked with the same Destination for a **Fan-In** solution.  
 
-## Sample configuration  
+# Sample configuration  
 Following is an example of configuration for **Data Redundancy** between one Origin and one Destination with an exclude filter.
 
 ```javascript
