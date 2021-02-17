@@ -22,6 +22,12 @@ namespace LinkerConsoleApp
             var services = new List<LinkerService>();
             foreach (var link in links)
             {
+                if (link.Filters == null || !link.Filters.Any())
+                {
+                    Log.Info("Setting 'include all' default filter");
+                    var defaultFilter = new Filter(FilterType.Stream, "*", FilterOperation.Include);
+                    link.Filters = new List<Filter> {defaultFilter};
+                }
                 var filters = link.Filters.Select(linkFilter => new Filter
                 {
                     FilterOperation = linkFilter.FilterOperation, FilterType = linkFilter.FilterType,
