@@ -36,10 +36,10 @@ namespace LinkerConsoleApp
                 var filterService = new FilterService(filters);
                 var service = new LinkerService(new LinkerConnectionBuilder(new Uri(link.Origin.ConnectionString),
                     ConnectionSettings.Create().SetHeartbeatInterval(TimeSpan.FromSeconds(6))
-                        .SetHeartbeatTimeout(TimeSpan.FromSeconds(3)).SetDefaultUserCredentials(new UserCredentials(link.Origin.User, link.Origin.Pass)),
+                        .SetHeartbeatTimeout(TimeSpan.FromSeconds(3)),
                     link.Origin.ConnectionName), new LinkerConnectionBuilder(new Uri(link.Destination.ConnectionString),
                     ConnectionSettings.Create().SetHeartbeatInterval(TimeSpan.FromSeconds(6))
-                        .SetHeartbeatTimeout(TimeSpan.FromSeconds(3)).SetDefaultUserCredentials(new UserCredentials(link.Destination.User, link.Destination.Pass)),
+                        .SetHeartbeatTimeout(TimeSpan.FromSeconds(3)),
                     link.Destination.ConnectionName), filterService, Settings.Default(), new NLogger());
                 services.Add(service);
             }
