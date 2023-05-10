@@ -35,9 +35,11 @@ namespace LinkerConsoleApp
                 }).ToList();
                 var filterService = new FilterService(filters);
                 var service = new LinkerService(new LinkerConnectionBuilder(new Uri(link.Origin.ConnectionString),
-                    ConnectionSettings.Create().SetDefaultUserCredentials(new UserCredentials(link.Origin.User, link.Origin.Pass)),
+                    ConnectionSettings.Create().SetHeartbeatInterval(TimeSpan.FromSeconds(6))
+                        .SetHeartbeatTimeout(TimeSpan.FromSeconds(3)).SetDefaultUserCredentials(new UserCredentials(link.Origin.User, link.Origin.Pass)),
                     link.Origin.ConnectionName), new LinkerConnectionBuilder(new Uri(link.Destination.ConnectionString),
-                    ConnectionSettings.Create().SetDefaultUserCredentials(new UserCredentials(link.Destination.User, link.Destination.Pass)),
+                    ConnectionSettings.Create().SetHeartbeatInterval(TimeSpan.FromSeconds(6))
+                        .SetHeartbeatTimeout(TimeSpan.FromSeconds(3)).SetDefaultUserCredentials(new UserCredentials(link.Destination.User, link.Destination.Pass)),
                     link.Destination.ConnectionName), filterService, Settings.Default(), new NLogger());
                 services.Add(service);
             }
